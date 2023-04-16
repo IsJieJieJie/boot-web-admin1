@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js" rel="stylesheet" type="text/javascript">
+
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<body>
+ <div id="app">
+     <input type="button" value="点我" @click="test">
+<div @click="test1($event)" >
+    <div ><!--第一个子元素-->
+
+        <span  th:data-text="我是罗俊杰">
+
+        </span>
+        <br>
+        <span  th:data-text="我是罗杰俊" ref="moon">
+
+        </span>
+         <br>
+<!--        <input type="text" value=""  ref="make" placeholder="发一条友善的评论">-->
+
+    </div>
+    <div><!--第二个子元素-->
+
+    </div>
+</div>
+ <div  >
+     <span v-for="co in comment" >
+        id为:{{co.id }}
+         钱为:{{co.money }}
+         用户:{{co.user.userName }}
+         <br>
+     </span>
+ </div>
+ </div>
+ <script >
+     var vue = new Vue({
+         el:"#app",
+         data:{
+             comment:[],
+             comment1:[{id:'1',money:100,user:{id:10,userName:'me'}},{id:'2',money:101,user:{id:11,userName:'mee'}}],
+             placeholder:'请发一条友善的评论'
+         },
+         methods:{
+             test1:function(e){
+                 //点击后获取用户名,然后设置相应属性为@+用户名
+                 var user=this.$refs.moon.getAttribute('data-text')
+                 user = '回复 @'+user+':';
+                 this.$refs.make.setAttribute('placeholder',user)
+             },
+             test3:function(){
+                 console.log(this.$refs.scroll)
+             },
+             test:function () {
+                 var oldThis = this;
+                 axios.post("/testVue",{
+                         id:54,
+                         money:45,
+                         userId:'22'
+                         //如何用post请求发送时,携带参数后,用对象接收到?，，实在不行就用全部用get,然后形参直接填参数名,不要对象了
+
+                 }).then(
+                     function (response) {
+                         // console.log(response.data)
+                      oldThis.comment=response.data
+                         console.log(typeof oldThis.comment[0].user)
+                         console.log(oldThis.comment[1].user.userName)
+                 })
+
+             }
+         }
+     })
+ </script>
+
+</form>
+</body>
+</html>
