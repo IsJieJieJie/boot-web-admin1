@@ -24,7 +24,7 @@ public class AdminController {
     @ResponseBody
     @PostMapping("/saveCity")
     public void saveCity(City city){
-
+        System.out.println("i m hot-fix");
         cityService.saveCity(city);
     }
 
