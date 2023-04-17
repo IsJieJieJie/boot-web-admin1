@@ -29,6 +29,7 @@ public class AdminController {
         System.out.println("i m hot-fix");
         System.out.println("i m hot-fix");
         System.out.println("i m hot-fix");
+        System.out.println("i m hot-fix");
 
         cityService.saveCity(city);
     }
